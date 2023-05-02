@@ -1,0 +1,9 @@
+﻿<h1>Добро пожаловать в Barberries</h1>
+
+<div>
+	@Html.RouteLink("Войти как администратор", new {controller = "Home", action = "LogIn", isAdmin = true}) |
+	@Html.RouteLink("Войти как пользователь", new {controller = "Home", action = "LogIn", isAdmin = false}) |
+	@Html.RouteLink("Зарегистрироваться", new {controller="Home", action = "Registration"})
+</div>
+
+

@@ -1,0 +1,105 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Barberries.Models.Product
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<tittle>Добавление товара</tittle>
+		<style>
+			.addingButton{
+				background: blue;
+				color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<form asp-controller="Admin" asp-action="AddProduct">
+			<div>
+				<p>
+					<label asp-for="Name"></label>
+					<input type="text" asp-for="Name" />
+					<span asp-validation-for="Name"></span>
+				</p>
+				<p>
+					<label asp-for="Picture"></label>
+					<input type="url" asp-for="Picture" />
+					<span asp-validation-for="Picture"></span>
+				</p>
+				<p>
+					<label asp-for="Cost"></label>
+					<input type="number" asp-for="Cost" />
+					<span asp-validation-for="Cost"></span>
+				</p>
+				<p>
+					<label asp-for="Count"></label>
+					<input type="number" asp-for="Count" />
+					<span asp-validation-for="Count"></span>
+				</p>
+				<p>
+					<label asp-for="Description"></label>
+					<input type="textarea" asp-for="Description" />
+					<span asp-validation-for="Description"></span>
+				</p>
+				<p>
+					<label asp-for="CategoryId">Категория:</label>
+					<select asp-for="CategoryId">
+						<option disabled>Книги</option>
+						<option value="6">--Образовательные</option>
+						<option value="7">--Исторические</option>
+						<option value="8">--Религиозные</option>
+						<option value="9">--Саморазвитие</option>
+						<option disabled>Одежда</option>
+						<option value="10">--Платья</option>
+						<option value="11">--Худи</option>
+						<option value="12">--Джинсы</option>
+						<option value="13">--Shirt</option>
+						<option value="14">--Свитшот</option>
+						<option value="15">--T-Shirt</option>
+						<option disabled>Электроника</option>
+						<option value="16">--Ноутбуки</option>
+						<option value="17">--Телефоны</option>
+						<option value="18">--Смарт-часы</option>
+						<option value="19">--Планшеты</option>
+						<option disabled>Мебель</option>
+						<option value="20">--Кровати</option>
+						<option value="21">--Холодильники</option>
+						<option value="22">--Столы</option>
+						<option value="23">--Шкафы</option>
+						<option disabled>Для животных</option>
+						<option value="24">--Одежда</option>
+						<option value="25">--Еда</option>
+						<option value="26">--Игрушки</option>
+					</select>
+				</p>
+				<p>
+					<h2>Параметры:</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Параметр</th>
+								<th>Значение</th>
+							</tr>
+						</thead>
+						<tbody>
+							@for(int i =0	; i< 10; i++) {
+								<tr>
+									<td>
+										<input type="text" name="keys"> :
+									</td>
+									<td>
+										<input type="text" name="values">
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</p>
+				<input type="submit" class="addingButton" value="Добавить" />
+			</div>
+		</form>
+	</body>
+</html>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>

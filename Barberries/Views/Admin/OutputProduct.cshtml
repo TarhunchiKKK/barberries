@@ -1,0 +1,67 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Barberries.Models.Product
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<tittle>@Model.Name</tittle>
+		<style>
+			.editingButton{
+				background: yellow;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>@Model.Name</h2>
+		<p>
+			<img src="@Model.Picture" 
+				title="@Model.Name" width="400" height="341"
+				alt="Изображение не может быть загружено"/>
+		</p>
+		@if (Model.IsHere) {
+			<p>
+				Количество: @Model.Count
+			</p>
+		}
+		else {
+			<p>
+				Нет на складе
+			</p>
+		}
+		<h2>Описание:</h2>
+		<p>
+			@Model.Description
+		</p>
+		<h3>Параметры:</h3>
+		<table align="center">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Категория :</td>
+					<td>@Model.Category!.Name</td>
+				</tr>
+				@foreach(KeyValuePair<string, string> pair in Model.Parameters) {
+					<tr>
+						<td>pair.Key :</td>
+						<td>pair.Value</td>
+					</tr>
+				}	
+			</tbody>
+		</table>
+
+		<p>
+			<form asp-controller="Admin" asp-action="EditProduct" asp-route-id="@Model.Id">
+				<div>
+					<input type="submit" class="editingButton" value="Редактировать/удалить" />
+				</div>
+			</form>
+		</p>
+
+	</body>
+</html>

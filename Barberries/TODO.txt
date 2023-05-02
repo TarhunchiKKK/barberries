@@ -1,0 +1,11 @@
+﻿* Controllers:
+	* AdminController
+	* HomeControler
+	* UserController:
+		- сортировка, фильтрация относительно ViewModel
+		- смена валюты
+* Views:
+	* панель пути из ссылок
+
+
+

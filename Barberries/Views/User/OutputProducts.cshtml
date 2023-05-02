@@ -1,0 +1,168 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Barberries.Models
+@using Barberries.ViewModels
+@model Barberries.ViewModels.OutputProductsViewModel
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<tittle>Каталог товаров</tittle>
+	</head>
+	<body>
+		<p>
+			<form asp-controller="User" asp-action="FindProducts">
+				<div>
+					<label for="name"></label>
+					<input type="text" name="name" placeholder="Название товара" />
+					<input type="submit" value="Найти" />
+				</div>
+			</form><pre>	</pre>
+
+			<form asp-controller="User" asp-action="UseSortAndFilters">
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Количество:</td>
+								<td><input type="number" name="countFrom" placeholder="От"/></td>
+								<td><inptut typeof="number" name ="countTo" placeholder="До"></inptut></td>
+							</tr>
+							<tr>
+								<td>Цена:</td>
+								<td><input type="number" name="costFrom" placeholder="От"/></td>
+								<td><inptut typeof="number" name ="costTo" placeholder="До"></inptut></td>
+							</tr>
+						</tbody>
+					</table>
+					<input type="submit" value="Применить" />
+				</div>
+			</form>
+		</p>
+
+		<p>
+			<i>Название</i>
+			<form asp-controller="User" asp-action="UseSortAndFilters">
+				<input type="hidden" value="@SortState.NameAscending" />
+				<input type="submit" value="↑" />
+			</form>
+			<form asp-controller="User" asp-action="UseSortAndFilters">
+				<input type="hidden" value="@SortState.NameDescending" />
+				<input type="submit" value="↓" />
+			</form><pre>	</pre>
+
+			<i>Количество</i>
+			<form asp-controller="User" asp-action="UseSortAndFilters">
+				<input type="hidden" value="@SortState.CountAscending" />
+				<input type="submit" value="↑" />
+			</form>
+			<form asp-controller="User" asp-action="UseSortAndFilters">
+				<input type="hidden" value="@SortState.CountDescending" />
+				<input type="submit" value="↓" />
+			</form><pre>	</pre>
+
+			<i>Цена</i>
+			<form asp-controller="User" asp-action="UseSortAndFilters">
+				<input type="hidden" value="@SortState.CostAscending" />
+				<input type="submit" value="↑" />
+			</form>
+			<form asp-controller="User" asp-action="UseSortAndFilters">
+				<input type="hidden" value="@SortState.CostDescending" />
+				<input type="submit" value="↓" />
+			</form>
+		</p>
+
+		<p>
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					@for(int i =0; i < Model.Products.Count() - 1; i += 2) {
+						Product product1 = Model.Products.ElementAt(i);
+						Product product2 = Model.Products.ElementAt(i + 1);
+						<tr>
+							<td>
+								<img src="@product1.Picture" 
+									title="@product1.Name" width="400" height="341"
+									alt="Изображение не может быть загружено"/>
+								<p>
+									<a asp-controller="User"
+									asp-action="GetProduct"
+									asp-route-id="@product1.Id">@product1.Name</a>
+								</p>
+								<p>
+									product1.Cost
+								</p>
+							</td>
+							<td>
+								<img src="@product2.Picture" 
+									title="@product2.Name" width="400" height="341"
+									alt="Изображение не может быть загружено"/>
+								<p>
+									<a asp-controller="User"
+									asp-action="GetProduct"
+									asp-route-id="@product2.Id">@product2.Name</a>
+								</p>
+								<p>
+									product2.Cost
+								</p>
+							</td>
+						</tr>
+					}
+					@if(Model.Products.Count() % 2 != 0) {
+						Product product = Model.Products.Last();
+						<tr>
+							<td>
+								<img src="@product.Picture" 
+									title="@product.Name" width="400" height="341"
+									alt="Изображение не может быть загружено"/>
+								<p>
+									<a asp-controller="User"
+									asp-action="GetProduct"
+									asp-route-id="@product.Id">@product.Name</a>
+								</p>
+								<p>
+									product.Cost
+								</p>
+							</td>
+							<td></td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</p>
+
+		<h4>
+			@if (Model.PageViewModel.HasPreviousPage) {
+				<a asp-controller="User"
+				asp-action="UseSortAndFilters"
+				asp-route-countfrom="@Model.FilterViewModel.CountFrom"
+				asp-route-countto="@Model.FilterViewModel.CountTo"
+				asp-route-costfrom="@Model.FilterViewModel.CostFrom"
+				asp-route-costto="@Model.FilterViewModel.CostTo"
+				asp-route-sortstate="@Model.SortViewModel.CurrentSort"
+				asp-route-page="@(Model.PageViewModel.PageNumber - 1)">Назад</a>
+			}
+			@if (Model.PageViewModel.HasNextPage) {
+				<a asp-controller="User"
+				asp-action="UseSortAndFilters"
+				asp-route-countfrom="@Model.FilterViewModel.CountFrom"
+				asp-route-countto="@Model.FilterViewModel.CountTo"
+				asp-route-costfrom="@Model.FilterViewModel.CostFrom"
+				asp-route-costto="@Model.FilterViewModel.CostTo"
+				asp-route-sortstate="@Model.SortViewModel.CurrentSort"
+				asp-route-page="@(Model.PageViewModel.PageNumber + 1)">Вперед</a>
+			}
+		</h4>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Barberries.Models.User;
+
+<form asp-controller="Home" asp-action="AddUser">
+	<div>
+		<p>
+			<label asp-for="Surname"></label>
+			<input type="text" asp-for="Surname" />
+			<span asp-validation-for="Surname"></span>
+		</p>
+		<p>
+			<label asp-for="Name"></label>
+			<input type="text" asp-for="Name" />
+			<span asp-validation-for="Name"></span>
+		</p>
+		<p>
+			<label asp-for="Age"></label>
+			<input type="number" asp-for="Age" />
+			<span asp-validation-for="Age"></span>
+		</p>
+		<p>
+			<label asp-for="NickName"></label>
+			<input type="text" asp-for="NickName" />
+			<span asp-validation-for="NickName"></span>
+		</p>
+		<p>
+			<label asp-for="PhoneNumber"></label>
+			<input type="text" asp-for="PhoneNumber" placeholder="+375 ** *** ** **"/>
+			<span asp-validation-for="PhoneNumber"></span>
+		</p>
+		<p>
+			<label asp-for="Password">Придумайте пароль:</label>
+			<input type="password" asp-for="Password" />
+			<span asp-validation-for="Password"></span>
+		</p>
+		<input type="submit" value= "Отправить"/>
+	</div>
+</form>
+
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
