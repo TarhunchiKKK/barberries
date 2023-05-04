@@ -1,0 +1,36 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Barberries.Models.User
+
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<tittle>@Model.NickName</tittle>
+	</head>
+	<body>
+		<h2>
+			@{string str = Model.Name + " " + Model.Surname ;}
+			@str
+		</h2>
+		<p>
+			<form asp-controller="Account" asp-action="EditUser">
+				<div>
+					<input type="submit" value="Редактировать"/>
+				</div>
+			</form>
+		</p>
+		<p>
+			<form asp-controller="Account" asp-action="OutputFavouriteProducts">
+				<div>
+					<input type="submit" value="Любимые товары" />
+				</div>
+			</form>
+		</p>
+		<p>
+			<form asp-controller="Account" asp-action="OutputAcquiredProducts">
+				<div>
+					<iput typeof="submit" value="Купленные товары"></iput>
+				</div>
+			</form>
+		</p>
+	</body>
+</html>

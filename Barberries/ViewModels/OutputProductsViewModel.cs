@@ -2,10 +2,13 @@
 
 namespace Barberries.ViewModels {
 	public class OutputProductsViewModel {
-		public IEnumerable<Product> Products { get; }
-		public PageViewModel PageViewModel { get; }
-		public FilterViewModel FilterViewModel { get; }
-		public SortViewModel SortViewModel { get; }
+		public IEnumerable<Product> Products { get; set; }
+		public Category Category { get; set; } = null!;
+
+		public string? Name { get; set; } = null;
+		public PageViewModel PageViewModel { get; set; }
+		public FilterViewModel FilterViewModel { get; set; }
+		public SortViewModel SortViewModel { get; set; }
 
 		public User User { get; set; } = null!;
 		public bool IsAdmin => User.Name == "Admin";
@@ -23,6 +26,6 @@ namespace Barberries.ViewModels {
 			SortViewModel.SetDefault();
 		}
 
-		public bool IsDefault => FilterViewModel.IsDefault && SortViewModel.IsDefault;
+		public bool IsDefault => FilterViewModel.IsDefault && Name == null;
 	}
 }
