@@ -48,8 +48,7 @@ namespace Barberries.Models {
 
 		}
 
-		public  bool Contains(string? str) {
-			if (str == null) return true;
+		public  bool Contains(string str) {
 			return Name.Contains(str);
 		}
 	}

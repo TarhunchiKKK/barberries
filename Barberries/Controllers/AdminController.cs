@@ -10,7 +10,6 @@ namespace Barberries.Controllers {
 		public ICreateProductService createProductService;
 
 		// Adding product
-		[HttpGet]
 		public IActionResult AddProduct() {
 			return View();
 		}
@@ -34,7 +33,6 @@ namespace Barberries.Controllers {
 		}
 
 		// Editing product
-		[HttpGet]
 		public IActionResult EditProduct(int? id = null) {
 			if(id != null) {
 				Product? product = db.Products.FirstOrDefault(p => p.Id == id);
@@ -45,6 +43,7 @@ namespace Barberries.Controllers {
 
 		[HttpPost] 
 		public async Task<IActionResult> EditProduct(Product product, string[] keys, string[] values) {
+			// TODO Editing
 			createProductService.UpdateProduct(product, keys, values);
 			db.Products.Update(product);
 			await db.SaveChangesAsync();

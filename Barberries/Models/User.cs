@@ -44,8 +44,8 @@ namespace Barberries.Models {
 
 		public bool IsAdmin => Name == "Admin";
 
+		List<ValidationResult> errors = new List<ValidationResult>();
 		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) {
-			List<ValidationResult> errors = new List<ValidationResult>();
 			string? substring = PhoneNumber?.Substring(5, 2);
 			switch (substring) {
 				case "17": case "29": case "33": case "44": break;
